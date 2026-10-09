@@ -1,0 +1,56 @@
+[
+    {
+        "id": "cc1eaa9ce548ac4a",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8e26961364564b2d",
+        "type": "inject",
+        "z": "cc1eaa9ce548ac4a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Danilik/basic",
+        "payload": "Danilik",
+        "payloadType": "str",
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "a94b37a0f2aa1bcd"
+            ]
+        ]
+    },
+    {
+        "id": "a94b37a0f2aa1bcd",
+        "type": "debug",
+        "z": "cc1eaa9ce548ac4a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 260,
+        "wires": []
+    }
+]
