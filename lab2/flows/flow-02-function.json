@@ -1,0 +1,76 @@
+[
+    {
+        "id": "f156ea0c68f77b4f",
+        "type": "tab",
+        "label": "2.2 Function",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c661a0fa80f0712",
+        "type": "inject",
+        "z": "f156ea0c68f77b4f",
+        "name": "2.2 input",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "6bc2bd15edbf9baa"
+            ]
+        ]
+    },
+    {
+        "id": "6bc2bd15edbf9baa",
+        "type": "function",
+        "z": "f156ea0c68f77b4f",
+        "name": "function 1",
+        "func": "// 2.2 Function node: демонстрация базовых элементов JS\n// Используем: let/const, if/else, for, массив, объект\n\n// 1. Получаем число из inject\nconst input = msg.payload;\n\n// 2. Массив — список чисел\nconst numbers = [1, 2, 3, 4, 5];\n\n// 3. Считаем сумму через цикл for\nlet sum = 0;\nfor (let i = 0; i < numbers.length; i++) {\n    sum += numbers[i];\n}\n\n// 4. Условие if/else — проверяем чётность входного числа\nlet parity;\nif (input % 2 === 0) {\n    parity = \"чётное\";\n} else {\n    parity = \"нечётное\";\n}\n\n// 5. Формируем объект-результат\nconst result = {\n    input: input,\n    parity: parity,\n    sum: sum,\n    numbers: numbers\n};\n\n// 6. Возвращаем сообщение с результатом\nmsg.payload = result;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 380,
+        "wires": [
+            [
+                "c6d44005f0bb0c3a"
+            ]
+        ]
+    },
+    {
+        "id": "c6d44005f0bb0c3a",
+        "type": "debug",
+        "z": "f156ea0c68f77b4f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 380,
+        "wires": []
+    }
+]
