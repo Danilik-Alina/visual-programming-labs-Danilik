@@ -1,0 +1,157 @@
+[
+    {
+        "id": "f4dbda25b77fcf12",
+        "type": "tab",
+        "label": "2.8 Endpoints",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "383e3cf9c94f20bb",
+        "type": "http in",
+        "z": "f4dbda25b77fcf12",
+        "name": "GET /api/text",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "d6dcb6e5b714a8e0"
+            ]
+        ]
+    },
+    {
+        "id": "d6dcb6e5b714a8e0",
+        "type": "function",
+        "z": "f4dbda25b77fcf12",
+        "name": "function 3",
+        "func": "msg.payload = \"Привет от Node-RED! Студент: Данилиk\";\nmsg.headers = { \"Content-Type\": \"text/plain; charset=utf-8\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "8d57fdc180f8021e"
+            ]
+        ]
+    },
+    {
+        "id": "8d57fdc180f8021e",
+        "type": "http response",
+        "z": "f4dbda25b77fcf12",
+        "name": "response /api/text",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d09eca1a1d588d27",
+        "type": "http in",
+        "z": "f4dbda25b77fcf12",
+        "name": "GET /api/info",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "d5d73b217f683fc4"
+            ]
+        ]
+    },
+    {
+        "id": "d5d73b217f683fc4",
+        "type": "function",
+        "z": "f4dbda25b77fcf12",
+        "name": "function 4",
+        "func": "msg.payload = {\n    service: \"Node-RED lab2\",\n    author: \"Данилиk\",\n    version: \"1.0.0\"\n};\nmsg.headers = { \"Content-Type\": \"application/json; charset=utf-8\" };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "a85d368f3a757db8"
+            ]
+        ]
+    },
+    {
+        "id": "a85d368f3a757db8",
+        "type": "http response",
+        "z": "f4dbda25b77fcf12",
+        "name": "response /api/info",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "498612899382b982",
+        "type": "http in",
+        "z": "f4dbda25b77fcf12",
+        "name": "GET /api/items/:id",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "43bd4843c8c8cc4e"
+            ]
+        ]
+    },
+    {
+        "id": "43bd4843c8c8cc4e",
+        "type": "function",
+        "z": "f4dbda25b77fcf12",
+        "name": "function 5",
+        "func": "const id = Number(msg.req.params.id);\nconst limit = msg.req.query.limit ? Number(msg.req.query.limit) : 10;\n\n// Проверка 1: id должно быть числом\nif (isNaN(id)) {\n    msg.statusCode = 400;\n    msg.headers = { \"Content-Type\": \"application/json; charset=utf-8\" };\n    msg.payload = { error: \"Bad Request\", message: \"id must be a number\" };\n    return msg;\n}\n\n// Проверка 2: id не должно быть больше 100\nif (id > 100) {\n    msg.statusCode = 404;\n    msg.headers = { \"Content-Type\": \"application/json; charset=utf-8\" };\n    msg.payload = { error: \"Not Found\", message: \"item with id \" + id + \" not found\" };\n    return msg;\n}\n\n// Успешный ответ\nmsg.statusCode = 200;\nmsg.headers = { \"Content-Type\": \"application/json; charset=utf-8\" };\nmsg.payload = {\n    id: id,\n    name: \"item-\" + id,\n    limit: limit,\n    status: \"ok\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 440,
+        "wires": [
+            [
+                "19ae96308a54c80f"
+            ]
+        ]
+    },
+    {
+        "id": "19ae96308a54c80f",
+        "type": "http response",
+        "z": "f4dbda25b77fcf12",
+        "name": "response /api/items",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 440,
+        "wires": []
+    }
+]
