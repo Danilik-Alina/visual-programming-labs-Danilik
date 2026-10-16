@@ -1,0 +1,124 @@
+[
+    {
+        "id": "99f408d11e2eaae0",
+        "type": "tab",
+        "label": "2.3 Switch",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ba54d2e2c9721f38",
+        "type": "inject",
+        "z": "99f408d11e2eaae0",
+        "name": "2.3 input",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "03d7fb5a3f70b830"
+            ]
+        ]
+    },
+    {
+        "id": "03d7fb5a3f70b830",
+        "type": "function",
+        "z": "99f408d11e2eaae0",
+        "name": "function 2",
+        "func": "const input = Number(msg.payload);\n\n// Строим массив от 1 до input\nconst numbers = [];\nfor (let i = 1; i <= input; i++) {\n    numbers.push(i);\n}\n\n// Считаем сумму всех чисел массива\nlet sum = 0;\nfor (let i = 0; i < numbers.length; i++) {\n    sum += numbers[i];\n}\n\n// Определяем чётность\nlet parity;\nif (input % 2 === 0) {\n    parity = \"чётное\";\n} else {\n    parity = \"нечётное\";\n}\n\nconst result = {\n    input: input,\n    parity: parity,\n    sum: sum,\n    numbers: numbers\n};\n\nmsg.payload = result;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "a064783bb846640e"
+            ]
+        ]
+    },
+    {
+        "id": "a064783bb846640e",
+        "type": "switch",
+        "z": "99f408d11e2eaae0",
+        "name": "",
+        "property": "payload.sum",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "20",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "014c8fc0acc27c1d"
+            ],
+            [
+                "07b086bf7a91778d"
+            ]
+        ]
+    },
+    {
+        "id": "07b086bf7a91778d",
+        "type": "debug",
+        "z": "99f408d11e2eaae0",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "014c8fc0acc27c1d",
+        "type": "debug",
+        "z": "99f408d11e2eaae0",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 200,
+        "wires": []
+    }
+]
