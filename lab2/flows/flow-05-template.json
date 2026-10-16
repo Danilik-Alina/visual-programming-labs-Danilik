@@ -1,0 +1,71 @@
+[
+    {
+        "id": "242135be47c55776",
+        "type": "tab",
+        "label": "2.5 Template",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "58606e3115c7ecbe",
+        "type": "inject",
+        "z": "242135be47c55776",
+        "name": "2.5 input",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Алина\", \"group\": \"СДП-ИИ-241\", \"year\": 2026}",
+        "payloadType": "json",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "2ea0ed66a8b304cf"
+            ]
+        ]
+    },
+    {
+        "id": "2ea0ed66a8b304cf",
+        "type": "template",
+        "z": "242135be47c55776",
+        "name": "2.5 template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"student\": \"{{payload.name}}\",\n  \"group\": \"{{payload.group}}\",\n  \"year\": {{payload.year}},\n  \"card\": \"Студент {{payload.name}}, группа {{payload.group}}, {{payload.year}} год\"\n}",
+        "output": "json",
+        "x": 570,
+        "y": 280,
+        "wires": [
+            [
+                "1945b4794ced57a0"
+            ]
+        ]
+    },
+    {
+        "id": "1945b4794ced57a0",
+        "type": "debug",
+        "z": "242135be47c55776",
+        "name": "2.5 debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 280,
+        "wires": []
+    }
+]
