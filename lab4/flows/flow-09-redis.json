@@ -1,0 +1,96 @@
+{
+  "name": "My workflow 7",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c5a3dbd5-de3a-457e-99f3-dc51cc842628",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "Danilik ",
+        "value": "Hello from n8n"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "6ba4ee12-d51d-4007-9043-dd1bd55dbf52",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "XLwsWGTXHgwATc91",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "Danilik ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "c9dfb173-b173-49c0-a61d-1e8b7d551a0a",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "XLwsWGTXHgwATc91",
+          "name": "Redis account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d7f1e09e-f899-479d-8db0-a58f0caa8eec",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "427f2ca012db2067d10ae303193ff7b8ad462056f310ecec9f9c7241f22bda53"
+  },
+  "nodeGroups": [],
+  "id": "hH12JRPxANTl1cym",
+  "tags": []
+}

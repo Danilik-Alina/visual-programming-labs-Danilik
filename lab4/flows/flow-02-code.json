@@ -1,0 +1,77 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8d57270c-0b8f-4342-8afa-272a86b2153d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Используем let и const\nconst names = [\"Alpha\", \"Beta\", \"Gamma\"];\nlet payload = \"\";\n\n// Используем цикл for и if/else\nfor (let i = 0; i < names.length; i++) {\n  if (names[i].length > 4) {\n    payload += names[i] + \" \";\n  } else {\n    payload += \"Short \";\n  }\n}\n\n// Возвращаем объект с полем payload\nreturn {\n  json: {\n    payload: payload.trim()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ecb22e2f-1cee-4fa9-9711-15139204e74a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "be94dcc4-b38f-4917-a99d-fa586ffabcbb",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "fee6d5c6-9c38-4100-8229-88c6b0128e7c",
+  "meta": {
+    "instanceId": "427f2ca012db2067d10ae303193ff7b8ad462056f310ecec9f9c7241f22bda53"
+  },
+  "nodeGroups": [],
+  "id": "SyZrZvdqnzY40aWv",
+  "tags": []
+}

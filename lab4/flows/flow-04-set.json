@@ -1,0 +1,95 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cedd3e3c-52ab-49aa-a5c1-88dd24547c1e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2cb34263-6bf8-41e7-aa8b-06e89f93672a",
+              "name": "topic",
+              "value": "lab4/Danilik/set",
+              "type": "string"
+            },
+            {
+              "id": "e7118b5e-5893-42fd-91f7-5c93c295656f",
+              "name": "payload",
+              "value": "Hello from Set",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2ddc05db-6fa5-4465-b710-3be8c202d822",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем весь объект из предыдущей ноды\nconst data = $input.first().json;\n\n// Возвращаем его (это и есть \"complete msg object\")\nreturn { json: data };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "a5ec3faf-3609-4dcc-8255-ae1ec3485731",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e6457e46-1a22-4de0-912a-e0bf2448cf82",
+  "meta": {
+    "instanceId": "427f2ca012db2067d10ae303193ff7b8ad462056f310ecec9f9c7241f22bda53"
+  },
+  "nodeGroups": [],
+  "id": "GDzNegPjXUC48qj5",
+  "tags": []
+}
